@@ -1,0 +1,17 @@
+# Paths
+input_dir: "./inputs"
+output_dir: "./outputs"
+weights_dir: "./weights"
+
+# Hardware
+device: "cuda" # Use 'cpu' if cuda is unavailable
+
+# Model Settings
+real_esrgan:
+  model_name: "RealESRGAN_x4plus"
+  tile: 0 # 0 means no tiling; use 200-400 if you run out of VRAM
+  outscale: 4
+
+real_basic_vsr:
+  model_name: "RealBasicVSR_x4"
+  fps: 30
