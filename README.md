@@ -14,6 +14,9 @@ Sequential upscaling pipeline using **Real-ESRGAN** (Images) and **RealBasicVSR*
    git clone [https://github.com/](https://github.com/)<your-username>/Real-ESRGAN.git repositories/Real-ESRGAN
    git clone [https://github.com/](https://github.com/)<your-username>/realbasicVSR.git repositories/realbasicVSR
 
+<img width="587" height="317" alt="Screenshot 2026-06-28 at 12 48 18" src="https://github.com/user-attachments/assets/7fbf94af-81d2-4f88-b681-1c3f1e4cb7f3" />
+
+
 autolabel/
 │
 ├── repositories/          # Clone your two forked repos here
