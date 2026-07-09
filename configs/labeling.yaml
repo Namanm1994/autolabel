@@ -44,3 +44,13 @@ ensemble:
   box_fusion_strategy: "nms"       # 'nms' (Non-Maximum Suppression) or 'wbf' (Weighted Box Fusion)
   final_iou_threshold: 0.50        # IoU threshold for consolidating box overlaps
   min_model_consensus: 1           # Minimum number of models that must agree on a box (1 or 2)
+
+# ==============================================================================
+# Preprocessing configs
+# ==============================================================================
+preprocessing:
+  target_size: 1024
+  padding_color: [114, 114, 114]    # Neutral ImageNet gray [B, G, R]
+  correct_exif: true                # Automatically handles smartphone/camera rotation
+  downscale_interpolation: "area"    # 'area', 'linear', or 'cubic'
+  upscale_interpolation: "cubic"
