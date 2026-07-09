@@ -1,0 +1,46 @@
+# ==============================================================================
+# Global & Environment Settings
+# ==============================================================================
+environment:
+  device: "cuda"              # 'cuda' or 'cpu'
+  input_dir: "./outputs"       # Source folder (outputs from the upscaler)
+  output_dir: "./labels"      # Target folder for generated pseudolabels
+  save_diagnostic_masks: true # Saves visual PNG overlays for debugging
+
+# ==============================================================================
+# Target Concepts / Classes to Label
+# ==============================================================================
+labeling_targets:
+  prompt_mode: "individual"   # 'individual' loop per class, or 'batch' text query
+  classes:
+    - "delivery truck"
+    - "license plate"
+    - "safety vest"
+
+# ==============================================================================
+# Model Specific Hyperparameters
+# ==============================================================================
+models:
+  owlvit_2:
+    model_id: "google/owlvit2-base-patch16-ensemble"
+    confidence_threshold: 0.25
+    nms_threshold: 0.45
+
+  grounding_dino:
+    config_path: "repositories/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py"
+    weights_path: "weights/groundingdino_swint_ogc.pth"
+    box_threshold: 0.30
+    text_threshold: 0.25
+
+  sam_3:
+    checkpoint: "weights/sam3_l.pt" # options: sam3_b.pt, sam3_l.pt
+    multimask_output: false         # True if you want multiple ambiguous masks per box
+    points_per_side: 32             # Used if falling back to exhaustive semantic mode
+
+# ==============================================================================
+# Ensemble Consensus & Fusion Settings
+# ==============================================================================
+ensemble:
+  box_fusion_strategy: "nms"       # 'nms' (Non-Maximum Suppression) or 'wbf' (Weighted Box Fusion)
+  final_iou_threshold: 0.50        # IoU threshold for consolidating box overlaps
+  min_model_consensus: 1           # Minimum number of models that must agree on a box (1 or 2)
